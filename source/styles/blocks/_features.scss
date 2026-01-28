@@ -1,0 +1,48 @@
+@use "../common/mixins.scss";
+@use "../common/variables.scss";
+
+.features {
+  padding-inline: var(--padding-mobile, #{variables.$padding-mobile});
+}
+
+.features__list {
+  @include mixins.reset-list;
+  margin: 0;
+}
+
+.features__item {
+  margin-block-end: 20px;
+
+  &:last-child {
+    margin-block-end: 0;
+  }
+}
+
+@media (min-width: #{variables.$tablet-width}) {
+  .features {
+    padding-inline: var(--padding-tablet, #{variables.$padding-tablet});
+  }
+
+  .features__item {
+    margin-block-end: 30px;
+  }
+}
+
+@media (min-width: #{variables.$desktop-width}) {
+  .features {
+    display: grid;
+    grid-template-columns: 1fr [content] 1220px 1fr;
+    padding-inline: 0;
+  }
+
+  .features__list {
+    grid-column: content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+
+  .features__item {
+    margin: 0;
+  }
+}

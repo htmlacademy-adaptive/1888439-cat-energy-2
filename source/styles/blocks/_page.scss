@@ -1,0 +1,101 @@
+@use "../common/variables.scss";
+
+.page--index .page__hero {
+  margin-block-end: 20px;
+}
+
+.page--index .page__features {
+  margin-block-end: 23px;
+}
+
+.page--index .page__principles {
+  margin-block-end: 40px;
+}
+
+.page--catalog .page__header {
+  margin-block-end: 27px;
+}
+
+.page--catalog .page__title {
+  margin-block: 0 15px;
+}
+
+.page--questionnaire .page__header {
+  margin-block-end: 27px;
+}
+
+.page--questionnaire .page__title {
+  margin-block: 0 37px;
+}
+
+.page--questionnaire .page__questionnaire {
+  margin-block: 0 32px;
+}
+
+@media (min-width: #{variables.$tablet-width}) {
+  .page--index .page__hero {
+    margin-block-end: 0;
+  }
+
+  .page--index .page__features {
+    margin-block-end: 45px;
+  }
+
+  .page--index .page__principles {
+    margin-block-end: 47px;
+  }
+
+  .page--catalog .page__header {
+    margin-block-end: 65px;
+  }
+
+  .page--catalog .page__title {
+    margin-block: 0 10px;
+  }
+
+  .page--questionnaire .page__header {
+    margin-block-end: 65px;
+  }
+
+  .page--questionnaire .page__title {
+    margin-block-end: 54px;
+  }
+
+  .page--questionnaire .page__questionnaire {
+    margin-block-end: 62px;
+  }
+}
+
+@media (min-width: #{variables.$desktop-width}) {
+  .page--index .page__hero {
+    margin-block-end: 82px;
+  }
+
+  .page--index .page__features {
+    margin-block-end: 71px;
+  }
+
+  .page--index .page__principles {
+    margin-block-end: 69px;
+  }
+
+  .page--catalog .page__header {
+    margin-block-end: 74px;
+  }
+
+  .page--catalog .page__title {
+    margin-block: 0 13px;
+  }
+
+  .page--questionnaire .page__header {
+    margin-block-end: 74px;
+  }
+
+  .page--questionnaire .page__title {
+    margin-block-end: 55px;
+  }
+
+  .page--questionnaire .page__questionnaire {
+    margin-block-end: 80px;
+  }
+}

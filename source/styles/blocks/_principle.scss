@@ -1,0 +1,99 @@
+@use "../common/mixins.scss";
+@use "../common/variables.scss";
+
+.principle {
+  --icon: linear-gradient(rgba(0, 0, 0, 0));
+
+  padding-inline-start: 80px;
+  padding-block: 10px;
+
+  background-image:
+    var(--icon),
+    linear-gradient(var(--clr-basic-green, #{variables.$clr-basic-green}));
+  background-repeat: no-repeat no-repeat;
+  background-size: 60px 60px, 60px 60px;
+  background-position: 0 10px, 0 10px;
+}
+
+.principle--composition {
+  --icon: url("../../icons/stack.svg#leaf");
+}
+
+.principle--substance {
+  --icon: url("../../icons/stack.svg#form");
+}
+
+.principle--application {
+  --icon: url("../../icons/stack.svg#eat");
+}
+
+.principle--result {
+  --icon: url("../../icons/stack.svg#weight");
+}
+
+.principle__title {
+  margin: 0;
+
+  @include mixins.secondary-font(
+    $color: var(--clr-basic-grey, #{variables.$clr-basic-grey}),
+  );
+}
+
+.principle__number {
+  display: none;
+}
+
+.principle__description {
+  margin-block: 2px 4px;
+
+  @include mixins.primary-font(
+    $font-size: clamp(14px, calc(12.57px + 0.45vw), 16px),
+    $line-height: clamp(18px, calc(13.71px + 1.34vw), 24px),
+  );
+}
+
+@media (min-width: #{variables.$tablet-width}) {
+  .principle {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    column-gap: 31px;
+    padding: 0;
+
+    background-size: 60px 60px, 80px 80px;
+    background-position: 10 50px, 0 40px;
+  }
+
+  .principle__title {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .principle__number {
+    display: block;
+    font-size: 280px;
+    line-height: 280px;
+  }
+
+  .principle--composition .principle__number {
+    margin-inline-start: 7px;
+  }
+
+  .principle--substance .principle__number {
+    margin-inline-start: 1px;
+  }
+
+  .principle--application .principle__number {
+    margin-inline-start: 2px;
+  }
+
+  .principle--result .principle__number {
+    margin-inline-start: 3px;
+  }
+
+  .principle__description {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-block: 151px 57px;
+  }
+}

@@ -1,0 +1,54 @@
+@use "../common/mixins.scss";
+@use "../common/variables.scss";
+
+.principles {
+  padding-inline: var(--padding-mobile, #{variables.$padding-mobile});
+}
+
+.principles__title {
+  margin-block: 0 31px;
+
+  @include mixins.secondary-font(
+    $text-transform: none,
+  );
+}
+
+.principles__list {
+  @include mixins.reset-list;
+  margin: 0;
+}
+
+.principles__item {
+  min-block-size: 60px;
+}
+
+@media (min-width: #{variables.$tablet-width}) {
+  .principles {
+    padding-inline: var(--padding-tablet, #{variables.$padding-tablet});
+  }
+
+  .principles__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: 37px 134px;
+  }
+}
+
+@media (min-width: #{variables.$desktop-width}) {
+  .principles {
+    display: grid;
+    grid-template-columns: 1fr [content] 1220px 1fr;
+    padding-inline: 0;
+  }
+
+  .principles__title {
+    grid-column: content;
+    margin-block-end: 32px;
+  }
+
+  .principles__list {
+    grid-column: content;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 77px;
+  }
+}

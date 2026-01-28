@@ -1,0 +1,42 @@
+@use "../common/variables.scss";
+
+.container {
+  padding-inline: var(--padding-mobile, #{variables.$padding-mobile});
+}
+
+.container--narrow {
+  padding-inline: calc(var(--padding-mobile, #{variables.$padding-mobile}) + clamp(0px, calc(-28.57px + 8.93vw), 40px));
+}
+
+@media (min-width: #{variables.$tablet-width}) {
+  .container {
+    padding-inline: var(--padding-tablet, #{variables.$padding-tablet});
+  }
+
+  .container--narrow {
+    padding-inline: calc(var(--padding-tablet, #{variables.$padding-tablet}) + clamp(0px, calc(85.71px + -5.95vw), 40px));
+  }
+}
+
+@media (min-width: #{variables.$desktop-width}) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1220px 1fr;
+    padding: 0;
+  }
+
+  .container::before,
+  .container::after {
+    content: "";
+    display: block;
+    grid-row: 1 / -1;
+  }
+
+  .container::before {
+    grid-column: 1;
+  }
+
+  .container::after {
+    grid-column: 3;
+  }
+}

@@ -1,0 +1,103 @@
+@use "../common/variables.scss";
+
+
+.slider {
+  --slider-state: 50%;
+  --_slider-state: clamp(0%, var(--slider-state), 100%);
+
+  position: relative;
+
+  contain: size;
+}
+
+.slider__image-container {
+  position: absolute;
+  inset: 0;
+}
+
+.slider__image {
+  display: block;
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+  mask-repeat: no-repeat;
+}
+
+.slider__image--before {
+  mask-image:
+    linear-gradient(
+      to right,
+      #000000 var(--_slider-state),
+      rgba(0, 0, 0, 0) var(--_slider-state),
+    );
+}
+
+.slider__image--after {
+  mask-image:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) var(--_slider-state),
+      #000000 var(--_slider-state),
+    );
+}
+
+.slider__thumb {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: calc(var(--_slider-state) - 2px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  block-size: 100%;
+  inline-size: 4px;
+
+  border: 0;
+  background-color: var(--clr-special-grey-2, #{variables.$clr-special-grey-2});
+  border-radius: 2px;
+
+  cursor: ew-resize;
+  transition: background 100ms;
+}
+
+.slider__thumb::after {
+  content: "";
+
+  display: block;
+  min-inline-size: 40px;
+  min-block-size: 40px;
+  background-color: var(--clr-special-grey-2, #{variables.$clr-special-grey-2});
+  background-image: url("../../icons/stack.svg#thumb");
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+
+  border-radius: 50%;
+  transition: background 100ms;
+}
+
+.slider__thumb:not(:disabled):is(:hover, :focus, :active),
+.slider__thumb:not(:disabled):is(:hover, :focus, :active)::after {
+  background-color: var(--clr-basic-green, #{variables.$clr-basic-green});
+}
+
+@supports selector(:focus-visible) {
+  .slider__thumb:not(:disabled):is(:hover, :focus, :active),
+  .slider__thumb:not(:disabled):is(:hover, :focus, :active)::after {
+    background-color: var(--clr-special-grey-2, #{variables.$clr-special-grey-2});
+  }
+
+  .slider__thumb:not(:disabled):is(:hover, :focus-visible, :active),
+  .slider__thumb:not(:disabled):is(:hover, :focus-visible, :active)::after {
+    background-color: var(--clr-basic-green, #{variables.$clr-basic-green});
+  }
+}
+
+.slider__thumb:not(:disabled):active {
+  filter: opacity(0.6);
+}
+
+.slider__thumb:disabled {
+  filter: opacity(0.6);
+  cursor: default;
+}

@@ -1,0 +1,22 @@
+@use "../common/mixins.scss";
+@use "../common/variables.scss";
+
+.title {
+  @include mixins.secondary-font(
+    $text-transform: none,
+  );
+  font-size: clamp(36px, 8vw, 60px);
+  line-height: clamp(36px, 8vw, 60px);
+}
+
+.hero__page-title.title {
+  color: var(--clr-white, #{variables.$clr-white});
+  text-align: center;
+}
+
+@media (min-width: variables.$tablet-width) {
+  .hero__page-title.title {
+    color: var(--clr-black, #{variables.$clr-black});
+    text-align: start;
+  }
+}

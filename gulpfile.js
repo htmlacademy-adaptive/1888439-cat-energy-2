@@ -79,7 +79,7 @@ export function processScripts () {
   return src(`${PATH_TO_SOURCE}scripts/*.js`)
     .pipe(gulpEsbuild({
       bundle: true,
-      format: 'esm',
+      format: 'iife',
       // splitting: true,
       platform: 'browser',
       minify: !isDevelopment,
@@ -90,9 +90,9 @@ export function processScripts () {
     .pipe(server.stream());
 }
 
-export function optimizeRaster () {
+export async function optimizeRaster () {
   const RAW_DENSITY = 2;
-  const TARGET_FORMATS = [undefined, 'webp']; // undefined — initial format: jpg or png
+  const TARGET_FORMATS = [undefined, 'webp', 'avif']; // undefined — initial format: jpg or png
 
   function createOptionsFormat() {
     const formats = [];
@@ -104,7 +104,10 @@ export function optimizeRaster () {
             format,
             rename: { suffix: `@${density}x` },
             width: ({ width }) => Math.ceil(width * density / RAW_DENSITY),
-            jpegOptions: { progressive: true },
+            jpegOptions: { progressive: true, mozjpeg: true },
+            avifOptions: { quality: 70, effort: 9 },
+            webpOptions: { effort: 6 },
+            pngOptions: { effort: 10, compressionLevel: 9, quality: 100 }
           },
         );
       }
