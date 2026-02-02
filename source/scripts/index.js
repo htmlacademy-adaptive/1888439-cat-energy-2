@@ -143,9 +143,11 @@ class Slider {
   }
 
   set currentState(newState) {
-    this._currentState = Math.max(0, Math.min(newState, 1));
+    const updatedState = Math.max(0, Math.min(newState, 1));
+    const isNeedUpdate = updatedState !== this._currentState;
+    this._currentState = updatedState;
 
-    if (this._rafId === null) {
+    if (this._rafId === null && isNeedUpdate) {
       this._rafId = requestAnimationFrame(() => {
         this._sliderElement.style.setProperty('--slider-state', this._currentState);
         this._rafId = null;
